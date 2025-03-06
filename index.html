@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Attractive To Do List</title>
   <style>
-    /* Basic reset */
     * {
       margin: 0;
       padding: 0;
@@ -112,7 +111,6 @@
       <button id="add-task">Add</button>
     </div>
     <ul class="todo-list" id="todo-list">
-      <!-- Tasks will appear here -->
     </ul>
   </div>
   
@@ -120,50 +118,36 @@
     const taskInput = document.getElementById('task-input');
     const addTaskButton = document.getElementById('add-task');
     const todoList = document.getElementById('todo-list');
-
+    
     function addTask() {
       const taskText = taskInput.value.trim();
       if (taskText === "") return;
-
-      // Create new list item
       const li = document.createElement('li');
-
-      // Create span for task text
       const span = document.createElement('span');
       span.textContent = taskText;
-
-      // Create complete button
       const completeBtn = document.createElement('button');
       completeBtn.classList.add('complete-btn');
-      completeBtn.innerHTML = '&#10004;'; // checkmark symbol
+      completeBtn.innerHTML = '&#10004;'; 
       completeBtn.addEventListener('click', () => {
         li.classList.toggle('completed');
       });
 
-      // Create delete button
+      
       const deleteBtn = document.createElement('button');
       deleteBtn.classList.add('delete-btn');
-      deleteBtn.innerHTML = '&times;'; // multiplication symbol
+      deleteBtn.innerHTML = '&times;'; 
       deleteBtn.addEventListener('click', () => {
         li.remove();
       });
-
-      // Append buttons and text to list item
       li.appendChild(completeBtn);
       li.appendChild(span);
       li.appendChild(deleteBtn);
-
-      // Append list item to the list
       todoList.appendChild(li);
-
-      // Clear and focus input
       taskInput.value = "";
       taskInput.focus();
     }
 
     addTaskButton.addEventListener('click', addTask);
-
-    // Allow adding task with the "Enter" key
     taskInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
         addTask();
